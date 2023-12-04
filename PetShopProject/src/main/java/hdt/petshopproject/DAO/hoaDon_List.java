@@ -14,7 +14,7 @@ import java.util.List;
 
 public class hoaDon_List {
      public List<hoaDon> getAll() throws Exception{
-        String sql = "select * from hoaDon;";
+        String sql = "SELECT Bill.ID_HD as iD, CONCAT(khachHang.ho, ' ', khachHang.ten) AS HoTen, Bill.NgMua as ngayMua, SUM(chiTietDonHang.soLuong * hangHoa.giaTien) AS tongTien FROM Bill JOIN khachHang ON Bill.ID_KH = khachHang.ID JOIN chiTietDonHang ON chiTietDonHang.ID_HD = Bill.ID_HD JOIN hangHoa ON hangHoa.ID = chiTietDonHang.ID_HH GROUP BY Bill.ID_HD, CONCAT(khachHang.ho, ' ', khachHang.ten), Bill.NgMua order by Bill.ID_HD";
         List<hoaDon> listHD = new ArrayList<>();
         try (
             Connection con = helper.openConnection(); 
@@ -22,68 +22,67 @@ public class hoaDon_List {
             ResultSet rs = stmt.executeQuery(sql);) {
             while (rs.next()) {
                 hoaDon hd = new hoaDon();
-                hd.setIdHD(Integer.parseInt(rs.getString("ID_HD")));
-                hd.setIdHH(Integer.parseInt(rs.getString("ID_HH")));
-                hd.setIdKH(Integer.parseInt(rs.getString("ID_KH")));
-                hd.setIdNV(Integer.parseInt(rs.getString("ID_NV")));
-                hd.setSoLuong(Integer.parseInt(rs.getString("soLuong")));
+                hd.setIdHD(Integer.parseInt(rs.getString("iD")));
+                hd.setTenKH(rs.getString("hoTen"));
+                hd.setNgTao(rs.getString("ngayMua"));
+                hd.setThanhTien(Integer.parseInt(rs.getString("tongTien")));
                 listHD.add(hd);
             }
             return listHD;
         }
     }
     
-    //them hoa don
-    public boolean insert(hoaDon hd) throws Exception{
-        String sql = "insert into hangDon(ID_HD,ID_HH, ID_NV, ID_KH, soLuong) values (?,?,?,?,?);";
-        try (
-                Connection con = helper.openConnection();  
-                PreparedStatement pstm = con.prepareStatement(sql);) 
-        {
-            pstm.setString(1, String.valueOf(hd.getIdHD()));
-            pstm.setString(2,String.valueOf(hd.getIdHH()));
-            pstm.setString(3, String.valueOf(hd.getIdNV()));
-            pstm.setString(4,String.valueOf(hd.getIdKH()));
-            pstm.setString(5,String.valueOf(hd.getSoLuong()));
-            return pstm.executeUpdate() > 0;
-        }
-    }
+//    //them hoa don
+//    public boolean insert(hoaDon hd) throws Exception{
+//        String sql = "insert into hangDon(ID_HD,ID_HH, ID_NV, ID_KH, soLuong) values (?,?,?,?,?);";
+//        try (
+//                Connection con = helper.openConnection();  
+//                PreparedStatement pstm = con.prepareStatement(sql);) 
+//        {
+//            pstm.setString(1, String.valueOf(hd.getIdHD()));
+//            pstm.setString(2,String.valueOf(hd.getIdHH()));
+//            pstm.setString(3, String.valueOf(hd.getIdNV()));
+//            pstm.setString(4,String.valueOf(hd.getIdKH()));
+//            pstm.setString(5,String.valueOf(hd.getSoLuong()));
+//            return pstm.executeUpdate() > 0;
+//        }
+//    }
     
-    //cap nhat hoa don
-    public boolean update(hoaDon hd) throws Exception {
-        String sql = "Update hoaDon set ID_HD=?, ID_HH=?, ID_NV=?, ID_KH=?, soLuong=?";
-        try (
-                Connection con = helper.openConnection();  
-                PreparedStatement pstm = con.prepareStatement(sql);) 
-        {
-            pstm.setString(1, String.valueOf(hd.getIdHD()));
-            pstm.setString(2,String.valueOf(hd.getIdHH()));
-            pstm.setString(3, String.valueOf(hd.getIdNV()));
-            pstm.setString(4,String.valueOf(hd.getIdKH()));
-            pstm.setString(5,String.valueOf(hd.getSoLuong()));
-            return pstm.executeUpdate() > 0;
-        }
-    }
+//    //cap nhat hoa don
+//    public boolean update(hoaDon hd) throws Exception {
+//        String sql = "Update hoaDon set ID_HD=?, ID_HH=?, ID_NV=?, ID_KH=?, soLuong=?";
+//        try (
+//                Connection con = helper.openConnection();  
+//                PreparedStatement pstm = con.prepareStatement(sql);) 
+//        {
+//            pstm.setString(1, String.valueOf(hd.getIdHD()));
+//            pstm.setString(2,String.valueOf(hd.getIdHH()));
+//            pstm.setString(3, String.valueOf(hd.getIdNV()));
+//            pstm.setString(4,String.valueOf(hd.getIdKH()));
+//            pstm.setString(5,String.valueOf(hd.getSoLuong()));
+//            return pstm.executeUpdate() > 0;
+//        }
+//    }
     
     // tim kiem theo ten
-    public hoaDon findByTen(int id) throws Exception {
-        String sql = "select * from hoaDon where ID_HD=?";
-        try (
+    public List<hoaDon> findByTen(String ten) throws Exception {
+        String sql = "SELECT Bill.ID_HD as iD, CONCAT(khachHang.ho, ' ', khachHang.ten) AS HoTen, Bill.NgMua as ngayMua, SUM(chiTietDonHang.soLuong * hangHoa.giaTien) AS tongTien FROM Bill JOIN khachHang ON Bill.ID_KH = khachHang.ID JOIN chiTietDonHang ON chiTietDonHang.ID_HD = Bill.ID_HD JOIN hangHoa ON hangHoa.ID = chiTietDonHang.ID_HH where concat(lower(khachHang.ho),' ', lower(khachHang.ten)) like ? GROUP BY Bill.ID_HD, CONCAT(khachHang.ho, ' ', khachHang.ten), Bill.NgMua;";
+        List<hoaDon> listHD = new ArrayList<>();
+       try (
                 Connection con = helper.openConnection();  
                 PreparedStatement pstm = con.prepareStatement(sql);) 
         {
-            pstm.setString(1, String.valueOf(id));
+            pstm.setString(1, "%" + ten + "%");
             ResultSet rs = pstm.executeQuery();
-            hoaDon hd = new hoaDon();
-            if (rs.next()) {
-                hd.setIdHD(Integer.parseInt(rs.getString("ID_HD")));
-                hd.setIdHH(Integer.parseInt(rs.getString("ID_HH")));
-                hd.setIdKH(Integer.parseInt(rs.getString("ID_KH")));
-                hd.setIdNV(Integer.parseInt(rs.getString("ID_NV")));
-                hd.setSoLuong(Integer.parseInt(rs.getString("soLuong")));
-                return hd;
-            }        
-            return null;   
+            while (rs.next()) {
+                hoaDon hd = new hoaDon();
+                hd.setIdHD(Integer.parseInt(rs.getString("iD")));
+                hd.setTenKH(rs.getString("hoTen"));
+                hd.setNgTao(rs.getString("ngayMua"));
+                hd.setThanhTien(Integer.parseInt(rs.getString("tongTien")));
+                listHD.add(hd);
+            }
+            return listHD;  
         }
     }
     
@@ -100,5 +99,24 @@ public class hoaDon_List {
             
         }
 
+    }
+    
+    public List<hoaDon> sapXepTen() throws Exception{
+        String sql = "SELECT Bill.ID_HD as iD, CONCAT(khachHang.ho, ' ', khachHang.ten) AS HoTen, Bill.NgMua as ngayMua, SUM(chiTietDonHang.soLuong * hangHoa.giaTien) AS tongTien FROM Bill JOIN khachHang ON Bill.ID_KH = khachHang.ID JOIN chiTietDonHang ON chiTietDonHang.ID_HD = Bill.ID_HD JOIN hangHoa ON hangHoa.ID = chiTietDonHang.ID_HH GROUP BY Bill.ID_HD, CONCAT(khachHang.ho, ' ', khachHang.ten), Bill.NgMua order by Bill.ID_HD  order by HoTen";
+        List<hoaDon> listHD = new ArrayList<>();
+        try (
+            Connection con = helper.openConnection(); 
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);) {
+            while (rs.next()) {
+                hoaDon hd = new hoaDon();
+                hd.setIdHD(Integer.parseInt(rs.getString("iD")));
+                hd.setTenKH(rs.getString("hoTen"));
+                hd.setNgTao(rs.getString("ngayMua"));
+                hd.setThanhTien(Integer.parseInt(rs.getString("tongTien")));
+                listHD.add(hd);
+            }
+            return listHD;
+        }
     }
 }

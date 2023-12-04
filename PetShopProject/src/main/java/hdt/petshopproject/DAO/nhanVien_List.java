@@ -15,7 +15,7 @@ import java.util.List;
 
 public class nhanVien_List {
     public List<nhanVien> getAll() throws Exception{
-        String sql = "select * from nhanVien;";
+        String sql = "select * from nhanVien order by ID";
         List<nhanVien> listNV = new ArrayList<>();
         try (
             Connection con = helper.openConnection(); 

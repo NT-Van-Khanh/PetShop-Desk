@@ -14,7 +14,7 @@ import java.util.List;
 public class hangHoa_List {
 
     public List<hangHoa> getAll() throws Exception {
-        String sql = "select * from hangHoa;";
+        String sql = "select * from hangHoa order by ID";
         List<hangHoa> listHH = new ArrayList<>();
         try (
                 Connection con = helper.openConnection(); Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {

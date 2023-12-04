@@ -17,7 +17,7 @@ public class khachHang_List {
     // lay toan danh sach
     public List<Customer> getAll() throws Exception {
         List<Customer> list_KH = new ArrayList<>();
-        String sql = "select * from khachHang";
+        String sql = "select * from khachHang order by ID";
         try (
             Connection con = helper.openConnection(); 
             Statement stmt = con.createStatement();

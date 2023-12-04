@@ -13,6 +13,7 @@ hdt\petshopproject\model\hoaDon.class
 hdt\petshopproject\component\User$2.class
 hdt\petshopproject\component\Oder$3.class
 hdt\petshopproject\DAO\nhanVien_List.class
+hdt\petshopproject\form\TabBill$5.class
 hdt\petshopproject\form\TabCustomer$1.class
 hdt\petshopproject\DAO\hoaDon_List.class
 hdt\petshopproject\DAO\khachHang_List.class
@@ -27,6 +28,7 @@ hdt\petshopproject\swing\scrollbar\ScrollBarCustom.class
 hdt\petshopproject\form\TabBill$1.class
 hdt\petshopproject\form\TabCustomer$5.class
 hdt\petshopproject\run\TabLogin$1.class
+hdt\petshopproject\form\TabBill$4.class
 hdt\petshopproject\form\TabStock$1.class
 hdt\petshopproject\model\nhanVien.class
 hdt\petshopproject\window\ThanhToan$3$1.class

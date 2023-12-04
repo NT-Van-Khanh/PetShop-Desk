@@ -3,10 +3,9 @@ package hdt.petshopproject.model;
 
 public class hoaDon {
     private int idHD;
-    private int idHH;
-    private int idKH;
-    private int idNV;
-    private int soLuong;
+    private String TenKH;
+    private String ngTao;
+    private long thanhTien;
 
     public int getIdHD() {
         return idHD;
@@ -16,49 +15,39 @@ public class hoaDon {
         this.idHD = idHD;
     }
 
-    public int getIdHH() {
-        return idHH;
+    public String getTenKH() {
+        return TenKH;
     }
 
-    public void setIdHH(int idHH) {
-        this.idHH = idHH;
+    public void setTenKH(String TenKH) {
+        this.TenKH = TenKH;
     }
 
-    public int getIdKH() {
-        return idKH;
+    public String getNgTao() {
+        return ngTao;
     }
 
-    public void setIdKH(int idKH) {
-        this.idKH = idKH;
+    public void setNgTao(String ngTao) {
+        this.ngTao = ngTao;
     }
 
-    public int getIdNV() {
-        return idNV;
+    public long getThanhTien() {
+        return thanhTien;
     }
 
-    public void setIdNV(int idNV) {
-        this.idNV = idNV;
-    }
-
-    public int getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
-    }
-
-    public hoaDon(int idHD, int idHH, int idKH, int idNV, int soLuong) {
-        this.idHD = idHD;
-        this.idHH = idHH;
-        this.idKH = idKH;
-        this.idNV = idNV;
-        this.soLuong = soLuong;
+    public void setThanhTien(long thanhTien) {
+        this.thanhTien = thanhTien;
     }
 
     public hoaDon() {
     }
 
-
+    public hoaDon(int idHD, String TenKH, String ngTao, long thanhTien) {
+        this.idHD = idHD;
+        this.TenKH = TenKH;
+        this.ngTao = ngTao;
+        this.thanhTien = thanhTien;
+    }
+    
     
 }
