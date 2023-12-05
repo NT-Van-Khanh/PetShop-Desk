@@ -25,7 +25,7 @@ public class khachHang_List {
             while (rs.next()) {
                 Customer ct = new Customer();
                 ct.setID( Integer.parseInt(rs.getString("ID")));
-                ct.setHoVaTen(rs.getString("ho") + rs.getString("ten"));
+                ct.setHoVaTen(rs.getString("ho") + " "+ rs.getString("ten"));
                 ct.setDiaChi(rs.getString("diaChi"));
                 ct.setSdt(rs.getString("sdt"));
                 list_KH.add(ct);
@@ -80,7 +80,7 @@ public class khachHang_List {
             while (rs.next()) {
                 Customer ct = new Customer();
                 ct.setID( Integer.parseInt(rs.getString("ID")));
-                ct.setHoVaTen(rs.getString("ho") + rs.getString("ten"));
+                ct.setHoVaTen(rs.getString("ho")+ " " + rs.getString("ten"));
                 ct.setDiaChi(rs.getString("diaChi"));
                 ct.setSdt(rs.getString("sdt"));
                 list.add(ct);
@@ -113,7 +113,7 @@ public class khachHang_List {
             while (rs.next()) {
                 Customer ct = new Customer();
                 ct.setID( Integer.parseInt(rs.getString("ID")));
-                ct.setHoVaTen(rs.getString("ho") + rs.getString("ten"));
+                ct.setHoVaTen(rs.getString("ho") + " " + rs.getString("ten"));
                 ct.setDiaChi(rs.getString("diaChi"));
                 ct.setSdt(rs.getString("sdt"));
                 list_KH.add(ct);
@@ -133,7 +133,7 @@ public class khachHang_List {
             while (rs.next()) {
                 Customer ct = new Customer();
                 ct.setID( Integer.parseInt(rs.getString("ID")));
-                ct.setHoVaTen(rs.getString("ho") + rs.getString("ten"));
+                ct.setHoVaTen(rs.getString("ho") + " " + rs.getString("ten"));
                 ct.setDiaChi(rs.getString("diaChi"));
                 ct.setSdt(rs.getString("sdt"));
                 list_KH.add(ct);

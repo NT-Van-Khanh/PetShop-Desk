@@ -10,9 +10,18 @@ public class nhanVien {
    private String matKhau;
    private String ngSinh;
    private String sdt;
+   private int Luong;
 
     public int getID_NV() {
         return ID_NV;
+    }
+
+    public int getLuong() {
+        return Luong;
+    }
+
+    public void setLuong(int Luong) {
+        this.Luong = Luong;
     }
 
     public void setID_NV(int ID_NV) {

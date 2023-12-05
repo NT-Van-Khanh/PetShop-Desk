@@ -6,7 +6,10 @@ import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class TabCustomer extends javax.swing.JPanel {
 
@@ -239,22 +242,19 @@ public class TabCustomer extends javax.swing.JPanel {
 
     private void CT_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CT_comboActionPerformed
         String choss = (String) CT_combo.getSelectedItem();
-        List<Customer> lstKH = new ArrayList<>();
-        try {
-            khachHang_List dao = new khachHang_List();
-            if (choss.equals("ID")) {
-                lstKH = dao.sapXepID();
-            } else {
-                lstKH = dao.sapXepTen();
-            }
-        } catch (Exception e) {
-            System.out.print("Lỗi sap xep Customer!!!");
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tblModel);
+        CT_table.setRowSorter(sorter);
+        if (choss.equals("ID")) {
+            sorter.setSortable(0, true);
+            List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+            sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+            sorter.setSortKeys(sortKeys);
+        } else {
+            sorter.setSortable(1, true);
+            List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+            sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
+            sorter.setSortKeys(sortKeys);
         }
-        tblModel.setRowCount(0);
-        for (Customer kh : lstKH) {
-            tblModel.addRow(new String[]{String.valueOf(kh.getID()), kh.getHoVaTen(), kh.getSdt(), kh.getDiaChi(), "--"});
-        }
-        tblModel.fireTableDataChanged();
     }//GEN-LAST:event_CT_comboActionPerformed
 
     private void initTable() {

@@ -23,7 +23,8 @@ public class nhanVien_List {
             ResultSet rs = stmt.executeQuery(sql);) {
             while (rs.next()) {
                 nhanVien nv = new nhanVien();
-                nv.setHoVaTen(rs.getString("ho") + rs.getString("ten"));
+                nv.setHoVaTen(rs.getString("ho") + " " + rs.getString("ten"));
+                nv.setID_NV(Integer.parseInt(rs.getString("ID")));
                 if( rs.getString("gioiTinh").equals("1")){
                     nv.setGioiTinh(true);
                 }else nv.setGioiTinh(false);
@@ -32,6 +33,7 @@ public class nhanVien_List {
                 nv.setNgSinh(rs.getString("ngSinh"));
                 nv.setSdt(rs.getString("sdt"));
                 nv.setTaiKhoan(rs.getString("taiKhoan"));
+                nv.setLuong(Integer.parseInt(rs.getString("Luong")));
                 listNV.add(nv);
             }
             return listNV;
@@ -40,55 +42,63 @@ public class nhanVien_List {
     
     //them nhanVien
     public boolean insert(nhanVien nv) throws Exception{
-        String sql = "insert into nhanVien(ho, ten, diaChi, sdt, taiKhoan, matKhau, ngSinh) values (?,?,?,?,?,?,?);";
+        String sql = "insert into nhanVien(ho, ten, diaChi, sdt, taiKhoan, matKhau, ngSinh, gioiTinh, luong) values (?,?,?,?,?,?,?, ?, ?);";
         try (
                 Connection con = helper.openConnection();  
                 PreparedStatement pstm = con.prepareStatement(sql);) 
         {
             String[] hoTen = nv.getHoVaTen().split(" ");
-            pstm.setString(1, String.join(" ", Arrays.copyOfRange(hoTen, 0, hoTen.length-2)));
+            pstm.setString(1, String.join(" ", Arrays.copyOfRange(hoTen, 0, hoTen.length)));
             pstm.setString(2,hoTen[hoTen.length -1]);
             pstm.setString(3, nv.getDiaChi());
             pstm.setString(4,nv.getSdt());
             pstm.setString(5,nv.getTaiKhoan());
             pstm.setString(6, nv.getMatKhau());
             pstm.setString(7,nv.getNgSinh());
+            pstm.setString(8, nv.isGioiTinh() ? "1" : "0");
+            pstm.setString(9, String.valueOf(nv.getLuong()));
             return pstm.executeUpdate() > 0;
         }
     }
     
     //update nhan vien
     public boolean update(nhanVien nv) throws Exception {
-        String sql = "Update nhanVien set ho = ?, ten = ?, diaChi = ?, sdt = ?, taiKhoan = ?, matKhau = ?, ngSinh = ?;";
+        String sql = "Update nhanVien set ho = ?, ten = ?, diaChi = ?, SDT = ?, taiKhoan = ?, matKhau = ?, ngSinh = ?, gioiTinh=?, Luong = ? where ID = ?";
         try (
                 Connection con = helper.openConnection();  
                 PreparedStatement pstm = con.prepareStatement(sql);) 
         {
              String[] hoTen = nv.getHoVaTen().split(" ");
-            pstm.setString(1,String.join(" ",Arrays.copyOfRange(hoTen,0,hoTen.length-2)));
+            pstm.setString(1,String.join(" ",Arrays.copyOfRange(hoTen,0,hoTen.length)));
             pstm.setString(2, hoTen[hoTen.length-1]);
             pstm.setString(3, nv.getDiaChi());
             pstm.setString(4, nv.getSdt());
             pstm.setString(5, nv.getTaiKhoan());
             pstm.setString(6, nv.getMatKhau());
             pstm.setString(7, nv.getNgSinh());
+            if( nv.isGioiTinh() ){
+                pstm.setString(8, "1");
+            } else pstm.setString(8, "0");
+            pstm.setString(9, String.valueOf(nv.getLuong()));
+            pstm.setString(10, String.valueOf(nv.getID_NV()));
             return pstm.executeUpdate() > 0;
         }
     }
     
     // tim kiem theo ten
     public List<nhanVien> findByTen(String ten) throws Exception {
-        String sql = "select * from nhanVien where ho + ten like '%?%'";
+        String sql = "select * from nhanVien where concat(lower(ho),' ', lower(ten)) like ? ";
         try (
                 Connection con = helper.openConnection();  
                 PreparedStatement pstm = con.prepareStatement(sql);) 
         {
-            pstm.setString(1, ten);
+            pstm.setString(1, "%" + ten + "%");
             ResultSet rs = pstm.executeQuery();
             List<nhanVien> listNV = new ArrayList<>();
             while (rs.next()) {
                 nhanVien nv = new nhanVien();
-                nv.setHoVaTen(rs.getString("ho") + rs.getString("ten"));
+                nv.setID_NV(Integer.parseInt(rs.getString("ID")));
+                nv.setHoVaTen(rs.getString("ho") + " "+ rs.getString("ten"));
                 if( rs.getString("gioiTinh").equals("1")){
                     nv.setGioiTinh(true);
                 }else nv.setGioiTinh(false);
@@ -113,6 +123,34 @@ public class nhanVien_List {
             return pstm.executeUpdate() > 0;
             
         }
-
     }
+    
+    public nhanVien fillNV( int  id ) throws Exception{
+        String sql = "select * from nhanVien where Id = ?";
+        try (
+                Connection con = helper.openConnection();  
+                PreparedStatement pstm = con.prepareStatement(sql);) 
+        {
+            pstm.setString(1, String.valueOf(id));
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                nhanVien nv = new nhanVien();
+                nv.setID_NV(id);
+                nv.setHoVaTen(rs.getString("ho") + " " + rs.getString("ten"));
+                nv.setID_NV(Integer.parseInt(rs.getString("ID")));
+                if( rs.getString("gioiTinh").equals("1")){
+                    nv.setGioiTinh(true);
+                }else nv.setGioiTinh(false);
+                nv.setDiaChi(rs.getString("diaChi"));
+                nv.setMatKhau(rs.getString("matKhau"));
+                nv.setNgSinh(rs.getString("ngSinh"));
+                nv.setSdt(rs.getString("sdt"));
+                nv.setTaiKhoan(rs.getString("taiKhoan"));
+                nv.setLuong(Integer.parseInt(rs.getString("luong")));
+                return nv;
+            }
+            return null;
+        }
+    }
+    
 }
