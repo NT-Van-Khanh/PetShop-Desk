@@ -26,6 +26,7 @@ hdt\petshopproject\form\TabNhanVien$7.class
 hdt\petshopproject\form\TabNhanVien$10.class
 hdt\petshopproject\run\run$1.class
 hdt\petshopproject\component\Oder.class
+hdt\petshopproject\form\TabNhanVien$13$1.class
 hdt\petshopproject\component\DanhSachThuCung.class
 hdt\petshopproject\form\TabRevenue.class
 hdt\petshopproject\run\run$7.class
@@ -34,6 +35,7 @@ hdt\petshopproject\swing\scrollbar\ScrollBarCustom.class
 hdt\petshopproject\form\TabBill$1.class
 hdt\petshopproject\form\TabCustomer$5.class
 hdt\petshopproject\run\TabLogin$1.class
+hdt\petshopproject\form\TabNhanVien$13.class
 hdt\petshopproject\form\TabBill$4.class
 hdt\petshopproject\form\TabStock$1.class
 hdt\petshopproject\model\nhanVien.class
@@ -78,4 +80,3 @@ hdt\petshopproject\form\TabNhanVien$2.class
 hdt\petshopproject\form\home\TabHome.class
 hdt\petshopproject\component\Oder$2.class
 hdt\petshopproject\form\home\cardSanPham.class
-hdt\petshopproject\form\TabNhanVien$12$1.class

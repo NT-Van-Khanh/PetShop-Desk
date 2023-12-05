@@ -42,7 +42,7 @@ public class nhanVien_List {
     
     //them nhanVien
     public boolean insert(nhanVien nv) throws Exception{
-        String sql = "insert into nhanVien(ho, ten, diaChi, sdt, taiKhoan, matKhau, ngSinh, gioiTinh, luong) values (?,?,?,?,?,?,?, ?, ?);";
+        String sql = "insert into nhanVien(ho, ten, SDT, diaChi, taiKhoan, matKhau, ngSinh, gioiTinh, Luong) values (?,?,?,?,?,?,?,?,?);";
         try (
                 Connection con = helper.openConnection();  
                 PreparedStatement pstm = con.prepareStatement(sql);) 
@@ -50,12 +50,12 @@ public class nhanVien_List {
             String[] hoTen = nv.getHoVaTen().split(" ");
             pstm.setString(1, String.join(" ", Arrays.copyOfRange(hoTen, 0, hoTen.length)));
             pstm.setString(2,hoTen[hoTen.length -1]);
-            pstm.setString(3, nv.getDiaChi());
-            pstm.setString(4,nv.getSdt());
+            pstm.setString(4, nv.getDiaChi());
+            pstm.setString(3,nv.getSdt());
             pstm.setString(5,nv.getTaiKhoan());
             pstm.setString(6, nv.getMatKhau());
             pstm.setString(7,nv.getNgSinh());
-            pstm.setString(8, nv.isGioiTinh() ? "1" : "0");
+            pstm.setString(8, nv.isGioiTinh() ? "True" : "False");
             pstm.setString(9, String.valueOf(nv.getLuong()));
             return pstm.executeUpdate() > 0;
         }
@@ -63,22 +63,22 @@ public class nhanVien_List {
     
     //update nhan vien
     public boolean update(nhanVien nv) throws Exception {
-        String sql = "Update nhanVien set ho = ?, ten = ?, diaChi = ?, SDT = ?, taiKhoan = ?, matKhau = ?, ngSinh = ?, gioiTinh=?, Luong = ? where ID = ?";
+        String sql = "Update nhanVien set ho = ?, ten = ?, SDT = ?, diaChi = ?, taiKhoan = ?, matKhau = ?, ngSinh = ?, gioiTinh=?, Luong = ? where ID = ?";
         try (
                 Connection con = helper.openConnection();  
                 PreparedStatement pstm = con.prepareStatement(sql);) 
         {
              String[] hoTen = nv.getHoVaTen().split(" ");
-            pstm.setString(1,String.join(" ",Arrays.copyOfRange(hoTen,0,hoTen.length)));
+            pstm.setString(1,String.join(" ",String.join(" ", Arrays.copyOfRange(hoTen,0,hoTen.length-1))));
             pstm.setString(2, hoTen[hoTen.length-1]);
-            pstm.setString(3, nv.getDiaChi());
-            pstm.setString(4, nv.getSdt());
+            pstm.setString(4, nv.getDiaChi());
+            pstm.setString(3, nv.getSdt());
             pstm.setString(5, nv.getTaiKhoan());
             pstm.setString(6, nv.getMatKhau());
             pstm.setString(7, nv.getNgSinh());
             if( nv.isGioiTinh() ){
-                pstm.setString(8, "1");
-            } else pstm.setString(8, "0");
+                pstm.setString(8, "True");
+            } else pstm.setString(8, "False");
             pstm.setString(9, String.valueOf(nv.getLuong()));
             pstm.setString(10, String.valueOf(nv.getID_NV()));
             return pstm.executeUpdate() > 0;
