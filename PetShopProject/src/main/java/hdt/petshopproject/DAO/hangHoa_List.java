@@ -47,9 +47,9 @@ public class hangHoa_List {
             pstm.setString(3, String.valueOf(hh.getSoluong()));
             pstm.setString(4, String.valueOf(hh.getGiaTien()));
             if (hh.isGioiTinh()) {
-                pstm.setString(5, "1");
+                pstm.setString(5, "True");
             } else {
-                pstm.setString(5, "0");
+                pstm.setString(5, "False");
             }
             pstm.setString(6, hh.getNgNhap());
             return pstm.executeUpdate() > 0;
@@ -58,7 +58,7 @@ public class hangHoa_List {
 
     //cap nhat hang hoa
     public boolean update(hangHoa hh) throws Exception {
-        String sql = "Update hangHoa set Ten=?, Loai=?, soLuong=?, giaTien=?";
+        String sql = "Update hangHoa set Ten=?, Loai=?, soLuong=?, giaTien=?, gioiTinh = ?, ngNhap = ? where ID = ?";
         try (
                 Connection con = helper.openConnection(); PreparedStatement pstm = con.prepareStatement(sql);) {
             pstm.setString(1, hh.getTen());
@@ -71,6 +71,7 @@ public class hangHoa_List {
                 pstm.setString(5, "0");
             }
             pstm.setString(6, hh.getNgNhap());
+            pstm.setString(7, String.valueOf(hh.getID()));
             return pstm.executeUpdate() > 0;
         }
     }
@@ -194,6 +195,31 @@ public class hangHoa_List {
                 listHH.add(hh);
             }
             return listHH;
+        }
+    }
+    // tim hang hoa theo ID
+    public hangHoa fillHH( int  id ) throws Exception{
+        String sql = "select * from hangHoa where ID = ?";
+        try (
+                Connection con = helper.openConnection();  
+                PreparedStatement pstm = con.prepareStatement(sql);) 
+        {
+            pstm.setString(1, String.valueOf(id));
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                hangHoa hh = new hangHoa();
+                hh.setID(Integer.parseInt(rs.getString("ID")));
+                hh.setTen(rs.getString("Ten"));
+                hh.setLoai(rs.getString("Loai"));
+                hh.setSoluong(Integer.parseInt(rs.getString("soLuong")));
+                hh.setGiaTien(Integer.parseInt(rs.getString("giaTien")));
+                if( rs.getString("gioiTinh").equals("1")){
+                    hh.setGioiTinh( true );
+                } else hh.setGioiTinh( false );
+                hh.setNgNhap(rs.getString("ngNhap"));
+                return hh;
+            }
+            return null;
         }
     }
 }

@@ -7,6 +7,7 @@ import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +24,7 @@ public class TabBill extends javax.swing.JPanel {
         jScrollPane1.setVerticalScrollBar(sb);
         initTable();
         fillTable();
+        B_Xoa.setEnabled(false);
     }
 
     
@@ -40,7 +42,7 @@ public class TabBill extends javax.swing.JPanel {
             hoaDon_List dao = new hoaDon_List();
             lstHD = dao.getAll();
         } catch (Exception e) {
-            System.out.print("Lỗi table !!!");
+            JOptionPane.showMessageDialog(this, "Dữ liệu lỗi!!");
         }
 
         tblModel.setRowCount(0);
@@ -57,9 +59,8 @@ public class TabBill extends javax.swing.JPanel {
         B_Combo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         B_Input = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         B_LM = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        B_Xoa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         B_table = new javax.swing.JTable();
 
@@ -92,9 +93,6 @@ public class TabBill extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Thêm mới");
-
         B_LM.setForeground(new java.awt.Color(51, 51, 51));
         B_LM.setText("Làm mới");
         B_LM.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,9 +101,15 @@ public class TabBill extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("|");
+        B_Xoa.setBackground(new java.awt.Color(255, 51, 0));
+        B_Xoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        B_Xoa.setForeground(new java.awt.Color(255, 255, 255));
+        B_Xoa.setText("Xóa");
+        B_Xoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                B_XoaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -116,11 +120,9 @@ public class TabBill extends javax.swing.JPanel {
                 .addComponent(B_Input, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(B_LM, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addComponent(B_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(B_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,14 +131,13 @@ public class TabBill extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_Input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(B_Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1)
                     .addComponent(B_LM)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(B_Xoa))
                 .addContainerGap())
         );
 
@@ -257,6 +258,11 @@ public class TabBill extends javax.swing.JPanel {
         B_table.setDragEnabled(true);
         B_table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         B_table.getTableHeader().setReorderingAllowed(false);
+        B_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                B_tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(B_table);
         if (B_table.getColumnModel().getColumnCount() > 0) {
             B_table.getColumnModel().getColumn(0).setResizable(false);
@@ -299,7 +305,7 @@ public class TabBill extends javax.swing.JPanel {
 
             lstHD = dao.findByTen(B_Input.getText());
         } catch (Exception e) {
-            System.out.print("Lỗi tim kiem Hd!!!");
+            JOptionPane.showMessageDialog(this, "Lỗi tìm kiếm!!");
         }
         tblModel.setRowCount(0);
         for (hoaDon hd : lstHD) {
@@ -310,6 +316,7 @@ public class TabBill extends javax.swing.JPanel {
 
     private void B_ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ComboActionPerformed
         String choss = (String) B_Combo.getSelectedItem();
+        B_Xoa.setEnabled(false);
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tblModel);
         B_table.setRowSorter(sorter);
         if (choss.equals("Mã đơn hàng")) {
@@ -329,20 +336,43 @@ public class TabBill extends javax.swing.JPanel {
         fillTable();
         B_Input.setText("Tìm kiếm");
         B_Combo.setSelectedIndex(0);
+        B_Xoa.setEnabled(false);
     }//GEN-LAST:event_B_LMMouseClicked
 
     private void B_InputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_B_InputFocusGained
         B_Input.setText("");
     }//GEN-LAST:event_B_InputFocusGained
 
+    private void B_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_tableMouseClicked
+        B_Xoa.setEnabled(true);
+    }//GEN-LAST:event_B_tableMouseClicked
+
+    private void B_XoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_XoaMouseClicked
+        try{
+            int chos = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa ?", "Xóa Thư Cưng", JOptionPane.YES_NO_OPTION);
+            if (chos == JOptionPane.YES_OPTION) {
+                hoaDon_List dao = new hoaDon_List();
+                boolean check = dao.delete(Integer.parseInt(B_table.getValueAt(B_table.getSelectedRow(), 0).toString()));
+                if (check == true) {
+                    fillTable();
+                    JOptionPane.showMessageDialog(this, "Xóa thành công!!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Lỗi dữ liệu!!");
+                }
+            }
+        }
+        catch(Exception e){
+           JOptionPane.showMessageDialog(this, "Không thể xóa!!"); 
+        }
+    }//GEN-LAST:event_B_XoaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> B_Combo;
     private javax.swing.JTextField B_Input;
     private javax.swing.JButton B_LM;
+    private javax.swing.JButton B_Xoa;
     private javax.swing.JTable B_table;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

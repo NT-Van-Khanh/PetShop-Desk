@@ -42,7 +42,7 @@ public class khachHang_List {
                 PreparedStatement pstm = con.prepareStatement(sql);) 
         {
             String[] hoTen = ct.getHoVaTen().split(" ");
-            pstm.setString(1, String.join(" ",Arrays.copyOfRange(hoTen,0,hoTen.length-2)));
+            pstm.setString(1, String.join(" ",Arrays.copyOfRange(hoTen,0,hoTen.length-1)));
             pstm.setString(2,hoTen[hoTen.length -1]);
             pstm.setString(3, ct.getDiaChi());
             pstm.setString(4,ct.getSdt());
@@ -52,17 +52,17 @@ public class khachHang_List {
     
     // update KhachHang
     public boolean update(Customer ct) throws Exception {
-        String sql = "Update khachHang set ho = ?, ten = ?, diaChi = ?, sdt = ?;";
+        String sql = "Update khachHang set ho = ?, ten = ?, diaChi = ?, sdt = ? where ID = ?";
         try (
                 Connection con = helper.openConnection();  
                 PreparedStatement pstm = con.prepareStatement(sql);) 
         {
              String[] hoTen = ct.getHoVaTen().split(" ");
-            pstm.setString(1,String.join(" ",Arrays.copyOfRange(hoTen,0,hoTen.length-2)));
+            pstm.setString(1,String.join(" ",Arrays.copyOfRange(hoTen,0,hoTen.length-1)));
             pstm.setString(2, hoTen[hoTen.length-1]);
             pstm.setString(3, ct.getDiaChi());
             pstm.setString(4, ct.getSdt());
-            
+            pstm.setString(5, String.valueOf(ct.getID()));
             return pstm.executeUpdate() > 0;
         }
     }
@@ -86,6 +86,26 @@ public class khachHang_List {
                 list.add(ct);
             }        
             return list;   
+        }
+    }
+    
+    // tim kiem theo ID
+    public Customer findByID( int ID) throws Exception {
+        String sql = "select * from khachHang where ID = ?";
+        try (
+                Connection con = helper.openConnection();  
+                PreparedStatement pstm = con.prepareStatement(sql);) 
+        {
+            pstm.setString(1, String.valueOf(ID));
+            ResultSet rs = pstm.executeQuery();
+            Customer ct = new Customer();
+            if (rs.next()) {
+                ct.setID( Integer.parseInt(rs.getString("ID")));
+                ct.setHoVaTen(rs.getString("ho")+ " " + rs.getString("ten"));
+                ct.setDiaChi(rs.getString("diaChi"));
+                ct.setSdt(rs.getString("sdt"));
+            }        
+            return ct;   
         }
     }
     //xoa khach hang

@@ -89,14 +89,13 @@ public class hoaDon_List {
     
     //xoa hoa don
     public boolean delete(int id) throws Exception {
-        String sql = "delete from hoaDon where id= ?";
+        String sql = "delete from Bill where ID_HD= ?";
         try (
             Connection con = helper.openConnection();  
             PreparedStatement pstm = con.prepareStatement(sql);) 
         {
             pstm.setString(1, String.valueOf(id));
             return pstm.executeUpdate() > 0;
-            
         }
 
     }
