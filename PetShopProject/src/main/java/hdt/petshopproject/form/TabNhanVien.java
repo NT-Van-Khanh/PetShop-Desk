@@ -6,6 +6,8 @@ import hdt.petshopproject.swing.TableGradientCell;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -133,6 +135,12 @@ public class TabNhanVien extends javax.swing.JDialog {
 
         jLabel12.setText("Mật khẩu");
 
+        T_ngSinh.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                T_ngSinhPropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -189,11 +197,11 @@ public class TabNhanVien extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
                                     .addComponent(T_Hovaten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -300,6 +308,12 @@ public class TabNhanVien extends javax.swing.JDialog {
         jLabel27.setText("Tài khoản");
 
         jLabel28.setText("Mật khẩu");
+
+        C_ngSinh.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                C_ngSinhPropertyChange(evt);
+            }
+        });
 
         C_xoa.setBackground(new java.awt.Color(255, 51, 51));
         C_xoa.setForeground(new java.awt.Color(255, 255, 255));
@@ -766,9 +780,47 @@ public class TabNhanVien extends javax.swing.JDialog {
             }
         }
         catch(Exception e){
-            JOptionPane.showConfirmDialog(this, "Không xóa được!!!");
+            JOptionPane.showMessageDialog(this, "Không xóa được!!!");
         }
     }//GEN-LAST:event_C_xoaMouseClicked
+
+    private void T_ngSinhPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_T_ngSinhPropertyChange
+        if ("date".equals(evt.getPropertyName())) {
+            Date selectedDate = (Date) evt.getNewValue();
+
+            if (selectedDate != null) {
+                // Convert từ Date sang LocalDate
+                LocalDate birthDate = selectedDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+
+                LocalDate currentDate = LocalDate.now();
+
+                // Tính tuổi
+                int age = Period.between(birthDate, currentDate).getYears();
+                if (age < 18) {
+                    JOptionPane.showMessageDialog(this, "Chưa đủ 18 tuổi!!");
+                }
+                    }
+                }
+    }//GEN-LAST:event_T_ngSinhPropertyChange
+
+    private void C_ngSinhPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_C_ngSinhPropertyChange
+        if ("date".equals(evt.getPropertyName())) {
+            Date selectedDate = (Date) evt.getNewValue();
+
+            if (selectedDate != null) {
+                // Convert từ Date sang LocalDate
+                LocalDate birthDate = selectedDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+
+                LocalDate currentDate = LocalDate.now();
+
+                // Tính tuổi
+                int age = Period.between(birthDate, currentDate).getYears();
+                if (age < 18) {
+                    JOptionPane.showMessageDialog(this, "Chưa đủ 18 tuổi!!");
+                }
+                    }
+                }
+    }//GEN-LAST:event_C_ngSinhPropertyChange
 
     /**
      * @param args the command line arguments

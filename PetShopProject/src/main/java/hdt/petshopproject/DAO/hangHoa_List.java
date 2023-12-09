@@ -23,7 +23,6 @@ public class hangHoa_List {
                 hh.setID(Integer.parseInt(rs.getString("ID")));
                 hh.setTen(rs.getString("Ten"));
                 hh.setLoai(rs.getString("Loai"));
-                hh.setSoluong(Integer.parseInt(rs.getString("soLuong")));
                 hh.setGiaTien(Integer.parseInt(rs.getString("giaTien")));
                 if (rs.getString("gioiTinh").equals("1")) {
                     hh.setGioiTinh(true);
@@ -31,6 +30,7 @@ public class hangHoa_List {
                     hh.setGioiTinh(false);
                 }
                 hh.setNgNhap(rs.getString("ngNhap"));
+                hh.setChiTiet(rs.getString("chiTiet"));
                 listHH.add(hh);
             }
             return listHH;
@@ -39,38 +39,38 @@ public class hangHoa_List {
 
     //them hang hoa
     public boolean insert(hangHoa hh) throws Exception {
-        String sql = "insert into hangHoa(Ten,Loai, soLuong, giaTien, gioiTinh, ngNhap) values (?,?,?, ?, ?, ?);";
+        String sql = "insert into hangHoa(Ten,Loai, giaTien, gioiTinh, ngNhap, chiTiet) values (?,?,?, ?, ?,?);";
         try (
                 Connection con = helper.openConnection(); PreparedStatement pstm = con.prepareStatement(sql);) {
             pstm.setString(1, hh.getTen());
             pstm.setString(2, hh.getLoai());
-            pstm.setString(3, String.valueOf(hh.getSoluong()));
-            pstm.setString(4, String.valueOf(hh.getGiaTien()));
+            pstm.setString(3, String.valueOf(hh.getGiaTien()));
             if (hh.isGioiTinh()) {
-                pstm.setString(5, "True");
+                pstm.setString(4, "True");
             } else {
-                pstm.setString(5, "False");
+                pstm.setString(4, "False");
             }
-            pstm.setString(6, hh.getNgNhap());
+            pstm.setString(5, hh.getNgNhap());
+            pstm.setString(6, String.valueOf(hh.getChiTiet()));
             return pstm.executeUpdate() > 0;
         }
     }
 
     //cap nhat hang hoa
     public boolean update(hangHoa hh) throws Exception {
-        String sql = "Update hangHoa set Ten=?, Loai=?, soLuong=?, giaTien=?, gioiTinh = ?, ngNhap = ? where ID = ?";
+        String sql = "Update hangHoa set Ten=?, Loai=?, giaTien=?, gioiTinh = ?, ngNhap = ?, chiTiet=? where ID = ?";
         try (
                 Connection con = helper.openConnection(); PreparedStatement pstm = con.prepareStatement(sql);) {
             pstm.setString(1, hh.getTen());
             pstm.setString(2, hh.getLoai());
-            pstm.setString(3, String.valueOf(hh.getSoluong()));
-            pstm.setString(4, String.valueOf(hh.getGiaTien()));
+            pstm.setString(3, String.valueOf(hh.getGiaTien()));
             if (hh.isGioiTinh()) {
-                pstm.setString(5, "1");
+                pstm.setString(4, "1");
             } else {
-                pstm.setString(5, "0");
+                pstm.setString(4, "0");
             }
-            pstm.setString(6, hh.getNgNhap());
+            pstm.setString(5, hh.getNgNhap());
+                        pstm.setString(6, String.valueOf(hh.getChiTiet()));
             pstm.setString(7, String.valueOf(hh.getID()));
             return pstm.executeUpdate() > 0;
         }
@@ -91,7 +91,7 @@ public class hangHoa_List {
                 hh.setID(Integer.parseInt(rs.getString("ID")));
                 hh.setTen(rs.getString("Ten"));
                 hh.setLoai(rs.getString("Loai"));
-                hh.setSoluong(Integer.parseInt(rs.getString("soLuong")));
+                hh.setChiTiet(rs.getString("chiTiet"));
                 hh.setGiaTien(Integer.parseInt(rs.getString("giaTien")));
                 if (rs.getString("gioiTinh").equals("1")) {
                     hh.setGioiTinh(true);
@@ -119,7 +119,7 @@ public class hangHoa_List {
                 hangHoa hh = new hangHoa();
                 hh.setTen(rs.getString("Ten"));
                 hh.setLoai(rs.getString("Loai"));
-                hh.setSoluong(Integer.parseInt(rs.getString("soLuong")));
+                hh.setChiTiet(rs.getString("chiTiet"));
                 hh.setGiaTien(Integer.parseInt(rs.getString("giaTien")));
                 if (hh.isGioiTinh()) {
                     pstm.setString(5, "1");
@@ -157,7 +157,7 @@ public class hangHoa_List {
                 hh.setID(Integer.parseInt(rs.getString("ID")));
                 hh.setTen(rs.getString("Ten"));
                 hh.setLoai(rs.getString("Loai"));
-                hh.setSoluong(Integer.parseInt(rs.getString("soLuong")));
+                hh.setChiTiet(rs.getString("chiTiet"));
                 hh.setGiaTien(Integer.parseInt(rs.getString("giaTien")));
                 if (rs.getString("gioiTinh").equals("1")) {
                     hh.setGioiTinh(true);
@@ -184,7 +184,7 @@ public class hangHoa_List {
                 hh.setID(Integer.parseInt(rs.getString("ID")));
                 hh.setTen(rs.getString("Ten"));
                 hh.setLoai(rs.getString("Loai"));
-                hh.setSoluong(Integer.parseInt(rs.getString("soLuong")));
+                hh.setChiTiet(rs.getString("chiTiet"));
                 hh.setGiaTien(Integer.parseInt(rs.getString("giaTien")));
                 if (rs.getString("gioiTinh").equals("1")) {
                     hh.setGioiTinh(true);
@@ -211,7 +211,7 @@ public class hangHoa_List {
                 hh.setID(Integer.parseInt(rs.getString("ID")));
                 hh.setTen(rs.getString("Ten"));
                 hh.setLoai(rs.getString("Loai"));
-                hh.setSoluong(Integer.parseInt(rs.getString("soLuong")));
+                hh.setChiTiet(rs.getString("chiTiet"));
                 hh.setGiaTien(Integer.parseInt(rs.getString("giaTien")));
                 if( rs.getString("gioiTinh").equals("1")){
                     hh.setGioiTinh( true );

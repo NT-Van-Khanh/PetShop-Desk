@@ -1,6 +1,7 @@
 hdt\petshopproject\form\TabStock$10.class
 hdt\petshopproject\run\run$2.class
 hdt\petshopproject\form\TabBill$2.class
+hdt\petshopproject\form\TabNhanVien$15$1.class
 hdt\petshopproject\form\TabStock$2.class
 hdt\petshopproject\model\hoaDon.class
 hdt\petshopproject\component\User$2.class
@@ -11,6 +12,7 @@ hdt\petshopproject\form\TabCustomer$15.class
 hdt\petshopproject\form\TabNhanVien.class
 hdt\petshopproject\form\TabNhanVien$7.class
 hdt\petshopproject\form\TabCustomer$8.class
+hdt\petshopproject\form\TabStock$18.class
 hdt\petshopproject\form\TabStock$7.class
 hdt\petshopproject\form\TabCustomer$12.class
 hdt\petshopproject\component\DanhSachThuCung.class
@@ -42,6 +44,7 @@ hdt\petshopproject\form\TabStock$3.class
 hdt\petshopproject\form\TabCustomer$3.class
 hdt\petshopproject\window\ThanhToan.class
 hdt\petshopproject\swing\scrollbar\ModernScrollBarUI.class
+hdt\petshopproject\form\TabStock$19.class
 hdt\petshopproject\form\TabNhanVien$2.class
 hdt\petshopproject\form\TabStock$13.class
 hdt\petshopproject\form\home\TabHome.class
@@ -60,7 +63,7 @@ hdt\petshopproject\form\home\sanPham.class
 hdt\petshopproject\form\TabNhanVien$3.class
 hdt\petshopproject\run\run$6.class
 hdt\petshopproject\form\TabNhanVien$9.class
-hdt\petshopproject\component\Oder$3.class
+hdt\petshopproject\form\TabStock$17.class
 hdt\petshopproject\DAO\nhanVien_List.class
 hdt\petshopproject\form\TabCustomer$1.class
 hdt\petshopproject\DAO\hoaDon_List.class
@@ -69,7 +72,6 @@ hdt\petshopproject\form\TabNhanVien$10.class
 hdt\petshopproject\run\run$1.class
 hdt\petshopproject\form\TabStock$14.class
 hdt\petshopproject\component\Oder.class
-hdt\petshopproject\form\TabNhanVien$13$1.class
 hdt\petshopproject\swing\scrollbar\ModernScrollBarUI$ScrollBarButton.class
 hdt\petshopproject\swing\scrollbar\ScrollBarCustom.class
 hdt\petshopproject\form\TabBill$1.class
@@ -91,12 +93,14 @@ hdt\petshopproject\form\TabNhanVien$4.class
 hdt\petshopproject\component\User$1.class
 hdt\petshopproject\form\TabCustomer.class
 hdt\petshopproject\form\TabCustomer$6.class
+hdt\petshopproject\form\TabNhanVien$14.class
 hdt\petshopproject\form\TabStock$5.class
 hdt\petshopproject\form\TabBill$6.class
 hdt\petshopproject\form\TabNhanVien$5.class
 hdt\petshopproject\run\TabLogin$3.class
 hdt\petshopproject\form\TabBill.class
 hdt\petshopproject\run\run$5.class
+hdt\petshopproject\form\TabNhanVien$15.class
 hdt\petshopproject\model\hangHoa.class
 hdt\petshopproject\form\TabCustomer$11.class
 hdt\petshopproject\component\Oder$2.class

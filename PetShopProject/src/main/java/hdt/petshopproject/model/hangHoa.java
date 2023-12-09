@@ -6,10 +6,10 @@ public class hangHoa {
     private int ID;
     private String ten;
     private String loai;
-    private int soluong;
     private int giaTien;
     private boolean gioiTinh;
     private String ngNhap;
+    private String chiTiet;
 
     public int getID() {
         return ID;
@@ -33,14 +33,6 @@ public class hangHoa {
 
     public void setLoai(String loai) {
         this.loai = loai;
-    }
-
-    public int getSoluong() {
-        return soluong;
-    }
-
-    public void setSoluong(int soluong) {
-        this.soluong = soluong;
     }
 
     public int getGiaTien() {
@@ -67,19 +59,17 @@ public class hangHoa {
         this.ngNhap = ngNhap;
     }
 
+    public String getChiTiet() {
+        return chiTiet;
+    }
+
+    public void setChiTiet(String chiTiet) {
+        this.chiTiet = chiTiet;
+    }
+
     public hangHoa() {
     }
 
-    public hangHoa(int ID, String ten, String loai, int soluong, int giaTien, boolean gioiTinh, String ngNhap) {
-        this.ID = ID;
-        this.ten = ten;
-        this.loai = loai;
-        this.soluong = soluong;
-        this.giaTien = giaTien;
-        this.gioiTinh = gioiTinh;
-        this.ngNhap = ngNhap;
-    }
 
-    
     
 }

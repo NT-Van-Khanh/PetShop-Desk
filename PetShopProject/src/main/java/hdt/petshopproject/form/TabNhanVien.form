@@ -118,11 +118,11 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="T_Hovaten" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -267,6 +267,9 @@
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="T_ngSinh">
+              <Events>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="T_ngSinhPropertyChange"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -537,6 +540,9 @@
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="C_ngSinh">
+              <Events>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="C_ngSinhPropertyChange"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="C_xoa">
               <Properties>
