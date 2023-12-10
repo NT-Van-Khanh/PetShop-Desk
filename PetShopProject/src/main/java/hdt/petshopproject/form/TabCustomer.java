@@ -16,6 +16,7 @@ public class TabCustomer extends javax.swing.JPanel {
 
     private DefaultTableModel tblModel = new DefaultTableModel();
     private Customer kh_up = new Customer();
+    
     public TabCustomer() {
         initComponents();
         initTable();

@@ -26,6 +26,16 @@
             <artifactId>jfreechart</artifactId>
             <version>1.5.3</version> <!-- Điền vào phiên bản cụ thể bạn muốn sử dụng -->
         </dependency>
+        <dependency>
+            <groupId>JFreeJ</groupId>
+            <artifactId>Chart</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>JFreeJ</groupId>
+            <artifactId>ChartCommon</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
