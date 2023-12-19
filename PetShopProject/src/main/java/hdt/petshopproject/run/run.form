@@ -77,10 +77,10 @@
                       <EmptySpace pref="588" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbNameAccount" alignment="1" min="-2" pref="149" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="btnIdAccount" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btnAvtAccount" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -97,11 +97,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton2" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnAvtAccount" min="-2" pref="40" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="lbNameAccount" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="btnIdAccount" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -110,7 +110,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnIdAccount">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
@@ -126,12 +126,12 @@
                 <Property name="horizontalAlignment" type="int" value="4"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIdAccountActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="btnAvtAccount">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAvtAccountActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbNameAccount">
@@ -546,7 +546,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="C&#xe0;i &#x111;&#x1eb7;t"/>
+                        <Property name="text" type="java.lang.String" value="Nh&#xe2;n vi&#xea;n"/>
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
                       <Events>

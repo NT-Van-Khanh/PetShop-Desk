@@ -6,17 +6,17 @@ package hdt.petshopproject.component;
 import java.awt.Color;
 import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.window.ThanhToan;
+import java.awt.Frame;
 /**
  *
  * @author ADMIN
  */
 public class Oder extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Bill
-     */
+    private ThanhToan thanhToan =new ThanhToan((Frame) getParent(),true);
     public Oder() {
         initComponents();
+        
     }
     public void setVerticalSB(javax.swing.JScrollPane jScrollPane,int width,int height,int size){
         ScrollBarCustom sb = new ScrollBarCustom(width,height,size);
@@ -43,10 +43,10 @@ public class Oder extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnThanhToan = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnHuyHD = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -57,7 +57,7 @@ public class Oder extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(360, 750));
+        setMinimumSize(new java.awt.Dimension(360, 0));
         setPreferredSize(new java.awt.Dimension(360, 750));
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 255));
@@ -143,14 +143,14 @@ public class Oder extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Khuyến mãi:");
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Thanh toán");
-        jButton1.setPreferredSize(new java.awt.Dimension(90, 25));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnThanhToan.setBackground(new java.awt.Color(0, 153, 51));
+        btnThanhToan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnThanhToan.setForeground(new java.awt.Color(255, 255, 255));
+        btnThanhToan.setText("Thanh toán");
+        btnThanhToan.setPreferredSize(new java.awt.Dimension(90, 25));
+        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnThanhToanActionPerformed(evt);
             }
         });
 
@@ -163,11 +163,11 @@ public class Oder extends javax.swing.JPanel {
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField2.setText("000.000");
 
-        jButton2.setBackground(new java.awt.Color(204, 0, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Hủy hóa đơn");
-        jButton2.setPreferredSize(new java.awt.Dimension(90, 25));
+        btnHuyHD.setBackground(new java.awt.Color(204, 0, 0));
+        btnHuyHD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnHuyHD.setForeground(new java.awt.Color(255, 255, 255));
+        btnHuyHD.setText("Hủy hóa đơn");
+        btnHuyHD.setPreferredSize(new java.awt.Dimension(90, 25));
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -250,9 +250,9 @@ public class Oder extends javax.swing.JPanel {
                         .addContainerGap())))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHuyHD, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -277,8 +277,8 @@ public class Oder extends javax.swing.JPanel {
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHuyHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -303,13 +303,13 @@ public class Oder extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnThanhToanActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnHuyHD;
+    private javax.swing.JButton btnThanhToan;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel14;

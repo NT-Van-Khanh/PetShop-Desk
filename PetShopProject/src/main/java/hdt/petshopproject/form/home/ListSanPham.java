@@ -14,7 +14,7 @@ public class ListSanPham extends javax.swing.JPanel {
 
     public ListSanPham() {
         initComponents();
-         for(int i=0;i<6;i++){
+         for(int i=0;i<8;i++){
             cSanPham.add(new cardSanPham());
             jPanel1.add(cSanPham.get(i));
         }

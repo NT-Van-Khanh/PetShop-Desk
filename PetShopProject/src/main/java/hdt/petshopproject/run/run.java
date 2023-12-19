@@ -7,6 +7,7 @@ import hdt.petshopproject.form.home.TabHome;
 import hdt.petshopproject.form.TabNhanVien;
 import hdt.petshopproject.form.TabRevenue;
 import hdt.petshopproject.form.TabSetting;
+import hdt.petshopproject.form.TabStaffManager;
 import hdt.petshopproject.form.TabStock;
 import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.window.ThanhToan;
@@ -14,26 +15,31 @@ import java.awt.Color;
 import java.util.EventListener;
 
 
-public class run extends javax.swing.JFrame {
+public final class run extends javax.swing.JFrame {
 
-    /**
-     * Creates new form petshop
-     */
+
     public run() {
         initComponents();
-        setLocationRelativeTo(null);
-        setExtendedState(MAXIMIZED_BOTH);
+        initFirst();
        
 //        ScrollBarCustom sb = new ScrollBarCustom(10,10,100);
 //        sb.setForeground(new Color(130,130,130));
 //        jScrollPane1.setVerticalScrollBar(sb);
-        showForm(tabHome,1);
+
 //        scaleImage(35,36,"C:\\Code\\Java\\Java_Doan\\PetShop\\icon\\home-225.png");
         
     }
-//    public class Event implements EventListener(){
-//        
-//    };
+    public run(String acc,String pwd){
+        initComponents();
+        initFirst();
+        accountID=acc;
+        accoutPwd=pwd;
+    }
+    public void initFirst(){
+        setLocationRelativeTo(null);
+        setExtendedState(MAXIMIZED_BOTH);
+        showForm(tabHome,1);
+    }
     public void scaleImage(javax.swing.JButton button,int width,int heigth, String link){
         javax.swing.ImageIcon icon=new javax.swing.ImageIcon(link);
         java.awt.Image tmp = icon.getImage();
@@ -53,8 +59,8 @@ public class run extends javax.swing.JFrame {
 
         main = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnIdAccount = new javax.swing.JButton();
+        btnAvtAccount = new javax.swing.JButton();
         lbNameAccount = new javax.swing.JLabel();
         shopName = new javax.swing.JLabel();
         Logo = new javax.swing.JButton();
@@ -93,21 +99,21 @@ public class run extends javax.swing.JFrame {
         header.setMinimumSize(new java.awt.Dimension(100, 60));
         header.setPreferredSize(new java.awt.Dimension(100, 60));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(200, 200, 200));
-        jButton1.setText("ID ACCOUNT");
-        jButton1.setContentAreaFilled(false);
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIdAccount.setBackground(new java.awt.Color(0, 0, 0));
+        btnIdAccount.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
+        btnIdAccount.setForeground(new java.awt.Color(200, 200, 200));
+        btnIdAccount.setText("ID ACCOUNT");
+        btnIdAccount.setContentAreaFilled(false);
+        btnIdAccount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnIdAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIdAccountActionPerformed(evt);
             }
         });
 
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAvtAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAvtAccountActionPerformed(evt);
             }
         });
 
@@ -135,9 +141,9 @@ public class run extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 588, Short.MAX_VALUE)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNameAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnIdAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAvtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         headerLayout.setVerticalGroup(
@@ -150,11 +156,11 @@ public class run extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAvtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(headerLayout.createSequentialGroup()
                         .addComponent(lbNameAccount)
                         .addGap(0, 0, 0)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnIdAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -405,7 +411,7 @@ public class run extends javax.swing.JFrame {
         bSetting.setBackground(new java.awt.Color(20, 20, 20));
         bSetting.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bSetting.setForeground(new java.awt.Color(255, 255, 255));
-        bSetting.setText("Cài đặt");
+        bSetting.setText("Nhân viên");
         bSetting.setContentAreaFilled(false);
         bSetting.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -511,15 +517,15 @@ public class run extends javax.swing.JFrame {
         // TODO add your handling code here:
         bSetting.setForeground(new Color(0,153,204));
         pSetting.setOpaque(true);
-        showForm(tabSetting,6);
+        showForm(tabNhanvien,6);
     }//GEN-LAST:event_bSettingActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnIdAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdAccountActionPerformed
         // TODO add your handling code here:
-        tabNhanVien.setLocationRelativeTo(null);
-        tabNhanVien.setVisible(true);
+//        tabNhanVien.setLocationRelativeTo(null);
+//        tabNhanVien.setVisible(true);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnIdAccountActionPerformed
 
     private void bHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHomeActionPerformed
         bHome.setForeground(new Color(0,153,204));
@@ -575,9 +581,9 @@ public class run extends javax.swing.JFrame {
         bSetting.setOpaque(false);
     }//GEN-LAST:event_bSettingMouseExited
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAvtAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvtAccountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAvtAccountActionPerformed
     private void showForm(Component com,int index){
 //        int index=1;
         if(index!=tabNumber){
@@ -658,14 +664,16 @@ public class run extends javax.swing.JFrame {
         });
     }
             // TODO add your handling code here:
+    private String accountID="";
+    private String accoutPwd="";
     private ThanhToan thanhToan = new ThanhToan(this,rootPaneCheckingEnabled);
-    private TabNhanVien  tabNhanVien = new TabNhanVien(this, rootPaneCheckingEnabled);
+//    private TabNhanVien  tabNhanVien = new TabNhanVien(this, rootPaneCheckingEnabled);
     private final TabCustomer tabCustomer = new TabCustomer();
     private final TabHome tabHome = new TabHome();
     private final TabBill tabBill = new TabBill();
     private final TabStock tabStock = new TabStock();
     private final TabRevenue tabRevenue = new TabRevenue();
-    private final TabSetting tabSetting = new TabSetting();
+    private final TabStaffManager tabNhanvien = new TabStaffManager();
     
     private int tabNumber=1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -677,9 +685,9 @@ public class run extends javax.swing.JFrame {
     private javax.swing.JButton bSetting;
     private javax.swing.JButton bStock;
     private javax.swing.JPanel body;
+    private javax.swing.JButton btnAvtAccount;
+    private javax.swing.JButton btnIdAccount;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lbNameAccount;

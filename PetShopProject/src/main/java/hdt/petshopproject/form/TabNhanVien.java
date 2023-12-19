@@ -239,7 +239,7 @@ public class TabNhanVien extends javax.swing.JDialog {
                             .addComponent(jLabel10)
                             .addComponent(T_Nam)
                             .addComponent(T_Nu))))
-                .addGap(0, 34, Short.MAX_VALUE))
+                .addGap(0, 47, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -261,11 +261,11 @@ public class TabNhanVien extends javax.swing.JDialog {
         themNhanVienLayout.setVerticalGroup(
             themNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, themNhanVienLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel2)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
 
         capNhat.setMinimumSize(new java.awt.Dimension(650, 400));
@@ -552,6 +552,7 @@ public class TabNhanVien extends javax.swing.JDialog {
                 return types [columnIndex];
             }
         });
+        NV_table.setRowHeight(25);
         NV_table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         NV_table.getTableHeader().setReorderingAllowed(false);
         NV_table.addMouseListener(new java.awt.event.MouseAdapter() {
