@@ -4,6 +4,7 @@ package hdt.petshopproject.form.home;
 import hdt.petshopproject.swing.scrollbar.ScrollBarCustom;
 import hdt.petshopproject.util.helper;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,13 +15,24 @@ import javax.swing.DefaultComboBoxModel;
 
 public class TabHome extends javax.swing.JPanel {
     private DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+    private int SoLuongCardSP;
+    List<cardSanPham> lsCardSP= new ArrayList<>();
     public TabHome() {
         initComponents();
         ScrollBarCustom sb = new ScrollBarCustom(10,10,100);
         sb.setForeground(new Color(130,130,130));
         jScrollPane1.setVerticalScrollBar(sb);
-//        jScrollPane1.setHorizontalScrollBar(sb);
-        initCombo();
+        initListSanPham(20);
+    }
+    
+   
+    private void initListSanPham(int soLuong){
+        for( int i =0;i<soLuong;i++){
+            lsCardSP.add(new cardSanPham());
+            listSanPham.add(lsCardSP.get(i));
+            
+        }
+        listSanPham.setPreferredSize(new Dimension(910,(int)Math.ceil((double)soLuong/6)*(230)+10));
     }
 
     @SuppressWarnings("unchecked")
@@ -37,10 +49,7 @@ public class TabHome extends javax.swing.JPanel {
         H_Combo = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel6 = new javax.swing.JPanel();
-        listSanPham1 = new hdt.petshopproject.form.home.MiniListSanPham();
-        listSanPham2 = new hdt.petshopproject.form.home.MiniListSanPham();
-        listSanPham3 = new hdt.petshopproject.form.home.MiniListSanPham();
+        listSanPham = new javax.swing.JPanel();
         oder = new hdt.petshopproject.component.Oder();
 
         jMenu1.setText("jMenu1");
@@ -112,20 +121,17 @@ public class TabHome extends javax.swing.JPanel {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setOpaque(false);
 
-        jPanel6.setBackground(new java.awt.Color(235, 227, 227));
-        jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.PAGE_AXIS));
-        jPanel6.add(listSanPham1);
-        jPanel6.add(listSanPham2);
-        jPanel6.add(listSanPham3);
-
-        jScrollPane1.setViewportView(jPanel6);
+        listSanPham.setMinimumSize(new java.awt.Dimension(910, 20));
+        listSanPham.setPreferredSize(new java.awt.Dimension(910, 910));
+        listSanPham.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 12, 10));
+        jScrollPane1.setViewportView(listSanPham);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 942, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,12 +199,9 @@ public class TabHome extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private hdt.petshopproject.form.home.MiniListSanPham listSanPham1;
-    private hdt.petshopproject.form.home.MiniListSanPham listSanPham2;
-    private hdt.petshopproject.form.home.MiniListSanPham listSanPham3;
+    private javax.swing.JPanel listSanPham;
     private hdt.petshopproject.component.Oder oder;
     // End of variables declaration//GEN-END:variables
 }
