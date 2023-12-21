@@ -4,6 +4,7 @@
  */
 package hdt.petshopproject.form;
 
+import hdt.barchart.BarChart;
 import hdt.chart.ModelChart;
 import java.awt.Color;
 import java.util.List;
@@ -14,13 +15,14 @@ import java.util.List;
  */
 public class TabRevenue extends javax.swing.JPanel {
 
-
+    BarChart barChart1= new BarChart();
     public TabRevenue() {
-        initComponents();
+        initComponents();   
+        jPanel5.add(barChart1);
+        
         initBarChartPet(barChart1);
-
     }
-    public void initBarChartPet(hdt.petshopproject.component.chartpanel.barchart.BarChart chart){
+    public void initBarChartPet( BarChart chart){
         chart.addLegend("Chó", new Color(245, 189, 135));
         chart.addLegend("Mèo", new Color(135, 189, 245));
         chart.addLegend("Cá", new Color(189, 135, 245));
@@ -55,7 +57,6 @@ public class TabRevenue extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        barChart1 = new hdt.petshopproject.component.chartpanel.barchart.BarChart();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -177,16 +178,7 @@ public class TabRevenue extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(229, 229, 229));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(barChart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(barChart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,7 +194,7 @@ public class TabRevenue extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(100, 100, 100))
+                .addGap(109, 109, 109))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -279,7 +271,6 @@ public class TabRevenue extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private hdt.petshopproject.component.chartpanel.barchart.BarChart barChart1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

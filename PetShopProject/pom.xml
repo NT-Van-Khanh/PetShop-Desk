@@ -46,6 +46,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>hdt.petshopproject.PetShopProject</exec.mainClass>
+        <exec.mainClass>hdt.petshopproject.run.run</exec.mainClass>
     </properties>
+    <build>
+    <plugins>
+      <plugin>
+          <!-- Build an executable JAR -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <mainClass>hdt.petshopproject.run.run</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
+    </plugins>
+    </build>
 </project>
